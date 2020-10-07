@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "953873338692",
+    "firebase_url": "https://vob-bayyinah-apps.firebaseio.com",
+    "project_id": "vob-bayyinah-apps",
+    "storage_bucket": "vob-bayyinah-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953873338692:android:3c5750b1eab9f698f08711",
+        "android_client_info": {
+          "package_name": "com.bayyinah.vob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953873338692-dd971t6t7ogf8qpbq5jqabi95pfqmlfv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bayyinah.vob",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "953873338692-0bf284g4v5gfd9tsethkg7no097l04cu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChnOLU_Lyvg8X_kuFwwpa3lMlJUh_Rq8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953873338692-0bf284g4v5gfd9tsethkg7no097l04cu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
