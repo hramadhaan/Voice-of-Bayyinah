@@ -51,7 +51,13 @@ const AboutUsScreen = (props) => {
             }}
             resizeMode="contain"
           />
-          <Text style={{fontSize: 16, fontWeight: 'bold', marginTop: 12}}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              marginTop: 12,
+              color: isEnabled ? 'white' : 'black',
+            }}>
             Tentang Voice of Bayyinah
           </Text>
           <Text
@@ -59,6 +65,7 @@ const AboutUsScreen = (props) => {
               marginTop: 12,
               textAlign: 'justify',
               letterSpacing: 0.3,
+              color: isEnabled ? 'white' : 'black',
             }}>
             {`VoB dan AoQ adalah bagian dari komunitas NAK Indonesia dan Yayasan Bayyinah Qur’an Indonesia.
 
@@ -72,7 +79,13 @@ Arabic of the Quran (AoQ) berdiri pada 5 September 2020 sebagai sebuah grup bela
 
 Materi pembelajaran bahasa Arab di AoQ menggunakan kurikulum Bayyinah TV dengan materi yang sudah disesuaikan dengan konteks keindonesiaan dan ketimuran.`}
           </Text>
-          <Text style={{fontSize: 16, fontWeight: 'bold', marginTop: 12}}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              marginTop: 12,
+              color: isEnabled ? 'white' : 'black',
+            }}>
             Profil Penulis
           </Text>
           <Text
@@ -81,10 +94,15 @@ Materi pembelajaran bahasa Arab di AoQ menggunakan kurikulum Bayyinah TV dengan 
               textAlign: 'justify',
               letterSpacing: 0.3,
               marginBottom: 12,
+              color: isEnabled ? 'white' : 'black',
             }}>
             Klik{' '}
             <Text
-              style={{fontWeight: 'bold', fontSize: 15}}
+              style={{
+                fontWeight: 'bold',
+                fontSize: 15,
+                color: isEnabled ? 'white' : 'black',
+              }}
               onPress={() => {
                 Linking.openURL('https://nakindonesia.com/profil-penulis/');
               }}>

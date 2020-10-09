@@ -6,7 +6,7 @@ import {
   Switch,
   BackHandler,
   TouchableWithoutFeedback,
-  Linking,
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -51,18 +51,49 @@ const SettingScreen = (props) => {
     loadKey().then(() => {});
   }, [loadKey]);
 
+  const setToDark = async (value) => {
+    console.log(value);
+    setIsEnabled(value);
+    await AsyncStorage.setItem('dark', value.toString());
+    BackHandler.exitApp();
+  };
+
   const toggleSwitch = async (value) => {
     // setIsEnabled(value);
     if (value === true) {
-      console.log(value);
-      setIsEnabled(value);
-      await AsyncStorage.setItem('dark', value.toString());
-      BackHandler.exitApp();
+      Alert.alert(
+        'Ingin menggantikan ke Night Mode ?',
+        'Aplikasi Voice of Bayyinah akan keluar jika Anda ingin mengganti perubahan.',
+        [
+          {
+            text: 'Batal',
+            style: 'cancel',
+          },
+          {
+            text: 'Oke',
+            onPress: () => setToDark(value),
+          },
+        ],
+      );
     } else if (value === false) {
-      console.log('Tidak Aktif');
-      setIsEnabled(value);
-      await AsyncStorage.removeItem('dark');
-      BackHandler.exitApp();
+      Alert.alert(
+        'Ingin menggantikan ke Light Mode ?',
+        'Aplikasi Voice of Bayyinah akan keluar jika Anda ingin mengganti perubahan.',
+        [
+          {
+            text: 'Batal',
+            style: 'cancel',
+          },
+          {
+            text: 'Oke',
+            onPress: async () => {
+              setIsEnabled(value);
+              await AsyncStorage.removeItem('dark');
+              BackHandler.exitApp();
+            },
+          },
+        ],
+      );
     }
   };
 
@@ -78,7 +109,9 @@ const SettingScreen = (props) => {
     <TouchableWithoutFeedback
       onPress={() => props.navigation.navigate('Login')}>
       <View style={styles.row}>
-        <Text>Login as Writer</Text>
+        <Text style={{color: isEnabled ? 'white' : 'black'}}>
+          Login as Writer
+        </Text>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -112,7 +145,7 @@ const SettingScreen = (props) => {
 
       <TouchableWithoutFeedback onPress={goToAboutUs}>
         <View style={styles.row}>
-          <Text>About Us</Text>
+          <Text style={{color: isEnabled ? 'white' : 'black'}}>About Us</Text>
         </View>
       </TouchableWithoutFeedback>
 
