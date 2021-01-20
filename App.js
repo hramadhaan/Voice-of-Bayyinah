@@ -11,7 +11,7 @@ import artikelKategoriReducer from './store/reducer/ArtikelKategoriReducer';
 import firebase from 'firebase';
 import favoriteReducer from './store/reducer/FavoriteReducer';
 
-// ADMIN
+// DEVELOPMENT
 
 const config = {
   apiKey: 'AIzaSyAF_TJWvjbBmGV7TCzIinYPF1Q3BQXs5io',
