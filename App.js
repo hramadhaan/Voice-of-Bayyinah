@@ -12,6 +12,7 @@ import firebase from 'firebase';
 import favoriteReducer from './store/reducer/FavoriteReducer';
 
 // DEVELOPMENT
+// TESTING
 
 const config = {
   apiKey: 'AIzaSyAF_TJWvjbBmGV7TCzIinYPF1Q3BQXs5io',
