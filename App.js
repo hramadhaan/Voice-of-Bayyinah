@@ -11,6 +11,8 @@ import artikelKategoriReducer from './store/reducer/ArtikelKategoriReducer';
 import firebase from 'firebase';
 import favoriteReducer from './store/reducer/FavoriteReducer';
 
+// ADMIN
+
 const config = {
   apiKey: 'AIzaSyAF_TJWvjbBmGV7TCzIinYPF1Q3BQXs5io',
   authDomain: 'vob-bayyinah-apps.firebaseapp.com',
