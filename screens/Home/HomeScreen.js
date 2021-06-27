@@ -1,25 +1,29 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
+  BackHandler,
   Text,
   TouchableOpacity,
   Button,
   StyleSheet,
   ActivityIndicator,
   FlatList,
+  Alert,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {useSelector, useDispatch} from 'react-redux';
-import SQLite, {openDatabase} from 'react-native-sqlite-storage';
-import {useTheme, ThemeColors} from 'react-navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import SQLite, { openDatabase } from 'react-native-sqlite-storage';
+import { useTheme, ThemeColors } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import * as kategoriAction from '../../store/action/KategoriAction';
 import ItemHome from '../../components/ItemHome';
+import VersionCheck from 'react-native-version-check';
 
 const db = SQLite.openDatabase(
-  {name: 'Favorite.db'},
-  () => {},
+  { name: 'Favorite.db' },
+  () => { },
   (error) => {
     console.log('Error: ' + error);
   },
@@ -33,6 +37,26 @@ const HomeScreen = (props) => {
   const dispatch = useDispatch();
 
   const [isEnabled, setIsEnabled] = useState(false);
+
+  useEffect(() => {
+    VersionCheck.needUpdate().then(async res => {
+      console.log('Is Needed: ', res.isNeeded)
+      if (res.isNeeded) {
+        Alert.alert('Informasi Update', 'VoB saat ini telah diperbaharui di Google Play, harap update aplikasi Anda agar mendapatkan informasi yang lebih baru.', [
+          {
+            'text': 'Update',
+            style: 'destructive',
+            'onPress': () => Linking.openURL(res.storeUrl)
+          },
+          {
+            text: 'Tidak',
+            style: 'cancel',
+            'onPress': () => BackHandler.exitApp()
+          }
+        ])
+      }
+    })
+  }, [])
 
   const loadKey = useCallback(async () => {
     try {
@@ -49,7 +73,7 @@ const HomeScreen = (props) => {
   }, []);
 
   useEffect(() => {
-    loadKey().then(() => {});
+    loadKey().then(() => { });
   }, [loadKey]);
 
   useEffect(() => {
@@ -109,7 +133,7 @@ const HomeScreen = (props) => {
   if (error) {
     return (
       <View style={styles.centered}>
-        <Text style={{color: isEnabled ? 'white' : 'black'}}>
+        <Text style={{ color: isEnabled ? 'white' : 'black' }}>
           Terjadi Kesalahan
         </Text>
         <Button title="Ulangi Lagi" onPress={loadArtikel} />
@@ -128,7 +152,7 @@ const HomeScreen = (props) => {
   if (!isLoading && kategoris.length === 0) {
     return (
       <View style={styles.centered}>
-        <Text style={{color: isEnabled ? 'white' : 'black'}}>
+        <Text style={{ color: isEnabled ? 'white' : 'black' }}>
           Saat ini belum tersedia pilihan kategori
         </Text>
       </View>
@@ -137,7 +161,7 @@ const HomeScreen = (props) => {
 
   return (
     <View
-      style={[styles.home, {backgroundColor: isEnabled ? 'black' : 'white'}]}>
+      style={[styles.home, { backgroundColor: isEnabled ? 'black' : 'white' }]}>
       <FlatList
         onRefresh={loadArtikel}
         refreshing={isRefreshing}
@@ -166,7 +190,7 @@ HomeScreen.navigationOptions = (navData) => {
     headerShown: true,
     title: 'Voice of Bayyinah',
     headerRight: () => (
-      <TouchableOpacity style={{marginRight: 16}} onPress={click}>
+      <TouchableOpacity style={{ marginRight: 16 }} onPress={click}>
         <Icon name="settings" size={20} color="white" />
       </TouchableOpacity>
     ),

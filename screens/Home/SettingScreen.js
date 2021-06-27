@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -9,23 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-
-const SECTIONS = [
-  {
-    title: 'About Us',
-    content: `VoB dan AoQ adalah bagian dari komunitas NAK Indonesia dan Yayasan Bayyinah Qur’an Indonesia.
-
-    Voice of Bayyinah (VoB) berdiri pada 17 Juni 2020, awalnya bernama Lessons from Bayyinah’s Production (LBP). Atas masukan para anggota, LBP berubah nama menjadi VoB pada 20 Agustus 2020 yang bertepatan dengan tahun baru Islam 1442 H.
-    
-    Tujuan VoB adalah untuk menghadirkan mutiara hikmah yang bersumber dari Bayyinah TV setiap hari. Termasuk akhir pekan dan hari libur. Karena petunjuk-Nya adalah seperti air. Kita membutuhkannya setiap hari.
-    
-    Bayyinah TV adalah program berbayar yang berisi lebih dari 2,000 jam pelajaran dalam bentuk video yang diperbarui setiap bulannya. Di Bayyinah TV, Ustaz Nouman Ali Khan memberikan bimbingan melalui sebuah pendekatan yang praktis untuk mempelajari Al-Qur’an.
-    
-    Arabic of the Quran (AoQ) berdiri pada 5 September 2020 sebagai sebuah grup belajar bahasa Arab. Tujuan awal didirikannya adalah untuk menyambut program Dream Live, kelas belajar bahasa Arab online yang diadakan oleh Bayyinah yang rencananya dimulai pada 2 Oktober 2020.
-    
-    Materi pembelajaran bahasa Arab di AoQ menggunakan kurikulum Bayyinah TV dengan materi yang sudah disesuaikan dengan konteks keindonesiaan dan ketimuran.`,
-  },
-];
+import VersionCheck from 'react-native-version-check';
 
 const SettingScreen = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -48,7 +32,7 @@ const SettingScreen = (props) => {
   }, []);
 
   useEffect(() => {
-    loadKey().then(() => {});
+    loadKey().then(() => { });
   }, [loadKey]);
 
   const setToDark = async (value) => {
@@ -109,7 +93,7 @@ const SettingScreen = (props) => {
     <TouchableWithoutFeedback
       onPress={() => props.navigation.navigate('Login')}>
       <View style={styles.row}>
-        <Text style={{color: isEnabled ? 'white' : 'black'}}>
+        <Text style={{ color: isEnabled ? 'white' : 'black' }}>
           Login as Writer
         </Text>
       </View>
@@ -117,15 +101,15 @@ const SettingScreen = (props) => {
   );
 
   return (
-    <View style={{flex: 1, backgroundColor: isEnabled ? 'black' : 'white'}}>
+    <View style={{ flex: 1, backgroundColor: isEnabled ? 'black' : 'white' }}>
       <TouchableWithoutFeedback
         onLongPress={toggleToLogin}
         delayLongPress={2000}>
         <View style={styles.row}>
-          <Text style={{color: isEnabled ? 'white' : 'black'}}>Night Mode</Text>
+          <Text style={{ color: isEnabled ? 'white' : 'black' }}>Night Mode</Text>
           <Switch
             // onTouchEnd={touchEnd}
-            trackColor={{false: '#767577', true: '#ccc'}}
+            trackColor={{ false: '#767577', true: '#ccc' }}
             thumbColor={isEnabled ? 'red' : '#f4f3f4'}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
@@ -145,9 +129,14 @@ const SettingScreen = (props) => {
 
       <TouchableWithoutFeedback onPress={goToAboutUs}>
         <View style={styles.row}>
-          <Text style={{color: isEnabled ? 'white' : 'black'}}>About Us</Text>
+          <Text style={{ color: isEnabled ? 'white' : 'black' }}>About Us</Text>
         </View>
       </TouchableWithoutFeedback>
+
+      <View style={styles.row}>
+        <Text style={{ color: isEnabled ? 'white' : 'black' }} >Versi</Text>
+        <Text>{VersionCheck.getCurrentVersion() ?? 'Unknown'}</Text>
+      </View>
 
       {loginShow ? login : undefined}
     </View>
